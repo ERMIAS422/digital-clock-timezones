@@ -1,4 +1,3 @@
-// Time zone configurations
 const timeZones = [
     { id: 'ny-time', city: 'New York', tz: 'America/New_York', dateId: 'ny-date' },
     { id: 'london-time', city: 'London', tz: 'Europe/London', dateId: 'london-date' },
@@ -14,15 +13,12 @@ const timeZones = [
     { id: 'toronto-time', city: 'Toronto', tz: 'America/Toronto', dateId: 'toronto-date' }
 ];
 
-/**
- * Update all clocks
- */
+
 function updateClocks() {
     const now = new Date();
 
     timeZones.forEach(zone => {
         try {
-            // Get time in specific timezone
             const timeString = now.toLocaleString('en-US', {
                 timeZone: zone.tz,
                 hour: '2-digit',
@@ -39,7 +35,6 @@ function updateClocks() {
                 day: 'numeric'
             });
 
-            // Update DOM
             const timeElement = document.getElementById(zone.id);
             const dateElement = document.getElementById(zone.dateId);
 
@@ -52,20 +47,15 @@ function updateClocks() {
     });
 }
 
-/**
- * Initialize and start clock updates
- */
 function initClock() {
-    // Update immediately
     updateClocks();
 
-    // Update every second
     setInterval(updateClocks, 1000);
 
     console.log('🕐 Digital Clock started! Updating every second.');
 }
 
-// Start clock when DOM is ready
+
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initClock);
 } else {
